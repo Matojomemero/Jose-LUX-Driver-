@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JGF Lux Driver — Luxury SUV Service · Miami</title>
+  <meta name="description" content="Private luxury SUV transportation in Miami. Airport transfers, corporate, special occasions. 8+ years of experience. English & Spanish.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --deep: #111111;
+      --card: #161616;
+      --gold: #c9a84c;
+      --gold-light: #e2c47a;
+      --gold-dim: rgba(201,168,76,0.15);
+      --white: #f5f0e8;
+      --muted: #888880;
+      --border: rgba(201,168,76,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 40px;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.95), rgba(10,10,10,0.6) 70%, transparent);
+      transition: background 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; letter-spacing: 3px;
+      color: var(--gold); text-transform: uppercase; text-decoration: none;
+      line-height: 1;
+    }
+    .nav-logo small {
+      display: block; font-size: 9px; letter-spacing: 4px;
+      color: var(--muted); font-weight: 400;
+      margin-top: 4px;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--black) !important;
+      padding: 10px 22px; font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--gold-light); color: var(--black) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      padding: 140px 60px 80px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        linear-gradient(160deg, #0a0a0a 0%, #111108 50%, #0a0a0a 100%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 28px;
+      animation: fadeUp 1s ease both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 7vw, 92px);
+      font-weight: 300; line-height: 0.95;
+      letter-spacing: -1px;
+      animation: fadeUp 1s ease 0.15s both;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--gold);
+    }
+    .hero-sub {
+      max-width: 460px; margin: 32px 0 0;
+      font-size: 14px; line-height: 1.85; color: var(--muted);
+      letter-spacing: 0.3px;
+      animation: fadeUp 1s ease 0.3s both;
+    }
+    .hero-tagline {
+      margin-top: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 16px; color: var(--gold);
+      letter-spacing: 1px;
+      animation: fadeUp 1s ease 0.4s both;
+    }
+    .hero-ctas {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      margin-top: 48px;
+      animation: fadeUp 1s ease 0.45s both;
+    }
+
+    .hero-image {
+      position: relative; z-index: 1;
+      animation: fadeIn 1.2s ease 0.3s both;
+    }
+    .hero-image-frame {
+      position: relative;
+      padding: 12px;
+      border: 1px solid var(--border);
+    }
+    .hero-image-frame::before {
+      content: '';
+      position: absolute; top: -1px; left: -1px;
+      width: 30px; height: 30px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+    .hero-image-frame::after {
+      content: '';
+      position: absolute; bottom: -1px; right: -1px;
+      width: 30px; height: 30px;
+      border-bottom: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+    }
+    .hero-image img {
+      width: 100%; height: 580px; object-fit: cover;
+      object-position: center;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: var(--gold); color: var(--black);
+      padding: 16px 36px; font-size: 11px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--white);
+      padding: 15px 36px; font-size: 11px; font-weight: 400;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.3s;
+      display: inline-block; background: transparent;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    .btn-whatsapp {
+      background: #25D366; color: white;
+      padding: 16px 36px; font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .btn-whatsapp:hover { background: #1ebf5b; transform: translateY(-2px); }
+
+    /* ── INFO TILES ── */
+    .info-tiles {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .info-tile {
+      background: var(--card); padding: 56px 40px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .info-tile .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px; font-weight: 300; color: var(--gold);
+      line-height: 1;
+    }
+    .info-tile p {
+      font-size: 11px; letter-spacing: 2px; color: var(--muted);
+      text-transform: uppercase; margin-top: 12px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 110px 48px; max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.5px;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-intro {
+      max-width: 580px; margin-top: 24px;
+      font-size: 14px; line-height: 1.9; color: var(--muted);
+    }
+
+    /* ── DRIVER SECTION ── */
+    .driver-section {
+      background: var(--deep);
+      max-width: 100%; padding: 0;
+    }
+    .driver-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 110px 48px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .driver-text .section-title { margin-bottom: 8px; }
+    .driver-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-style: italic; color: var(--gold);
+      margin-top: 12px; margin-bottom: 24px;
+    }
+    .driver-text p {
+      font-size: 14px; line-height: 1.9; color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .driver-meta {
+      margin-top: 32px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .driver-meta-row {
+      display: flex; align-items: center; gap: 16px;
+      padding-bottom: 16px; border-bottom: 1px solid var(--border);
+    }
+    .driver-meta-row:last-child { border-bottom: none; }
+    .driver-meta-icon {
+      font-size: 18px; color: var(--gold);
+      width: 28px; text-align: center;
+    }
+    .driver-meta-label {
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .driver-meta-value {
+      font-size: 14px; color: var(--white);
+      margin-top: 4px;
+    }
+
+    .driver-card {
+      background: var(--black);
+      border: 1px solid var(--border);
+      padding: 48px;
+      text-align: center;
+      position: relative;
+    }
+    .driver-card::before, .driver-card::after {
+      content: '✦';
+      color: var(--gold); font-size: 14px;
+      position: absolute;
+    }
+    .driver-card::before { top: 16px; left: 16px; }
+    .driver-card::after { bottom: 16px; right: 16px; }
+    .driver-initials {
+      width: 140px; height: 140px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px; font-weight: 400; color: var(--gold);
+      margin: 0 auto 28px;
+    }
+    .driver-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .driver-card-role {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 32px;
+    }
+    .driver-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 18px;
+      color: var(--gold-light);
+      padding: 24px 0 0;
+      border-top: 1px solid var(--border);
+      line-height: 1.6;
+    }
+
+    /* ── SERVICES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px; margin-top: 60px;
+    }
+    .feature-card {
+      background: var(--card);
+      padding: 48px 36px;
+      border-top: 1px solid var(--border);
+      transition: background 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .feature-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      height: 2px; width: 0;
+      background: var(--gold);
+      transition: width 0.4s ease;
+    }
+    .feature-card:hover { background: #1a1a14; }
+    .feature-card:hover::after { width: 100%; }
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px; color: var(--gold);
+      letter-spacing: 3px; margin-bottom: 18px;
+    }
+    .feature-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 400; margin-bottom: 14px;
+    }
+    .feature-desc {
+      font-size: 12.5px; line-height: 1.85; color: var(--muted);
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section {
+      max-width: 100%;
+      padding: 110px 0;
+      background: linear-gradient(180deg, var(--black) 0%, var(--deep) 100%);
+    }
+    .gallery-header {
+      max-width: 1200px; margin: 0 auto 60px;
+      padding: 0 48px;
+    }
+    .gallery-grid {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 320px 320px;
+      gap: 16px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item-1 { grid-column: 1; grid-row: 1 / 3; }
+    .gallery-item-2 { grid-column: 2; grid-row: 1; }
+    .gallery-item-3 { grid-column: 2; grid-row: 2; }
+    .gallery-item-1 img { object-position: center 65%; }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      background: linear-gradient(to top, rgba(10,10,10,0.9), transparent);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-style: italic;
+      color: var(--gold);
+    }
+    .gallery-caption small {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal; font-size: 10px; letter-spacing: 2px;
+      color: var(--muted); text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── BOOKING ── */
+    .booking-section {
+      background: var(--deep);
+      max-width: 100%; padding: 0;
+    }
+    .booking-wrapper {
+      max-width: 1200px; margin: 0 auto;
+      padding: 110px 48px;
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 80px; align-items: start;
+    }
+    .booking-text p {
+      margin-top: 22px; font-size: 14px;
+      line-height: 1.9; color: var(--muted);
+    }
+    .booking-note {
+      margin-top: 32px;
+      padding: 24px;
+      border-left: 2px solid var(--gold);
+      background: rgba(201,168,76,0.04);
+    }
+    .booking-note strong {
+      color: var(--gold); font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .booking-note p {
+      margin-top: 8px; font-size: 12.5px;
+      color: var(--muted); line-height: 1.7;
+    }
+
+    .form-fields { display: flex; flex-direction: column; gap: 18px; }
+    .field-group { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field label {
+      font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .field input, .field select, .field textarea {
+      background: var(--black); border: 1px solid var(--border);
+      color: var(--white); padding: 14px 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 300;
+      outline: none; transition: border-color 0.3s; width: 100%;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: #555; }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--gold);
+    }
+    .field select { cursor: pointer; }
+    .field select option { background: var(--black); }
+    .field textarea { resize: vertical; min-height: 90px; }
+
+    .form-submit {
+      width: 100%; padding: 18px;
+      background: var(--gold); color: var(--black);
+      border: none; cursor: pointer;
+      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+      font-family: 'Montserrat', sans-serif;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .form-submit svg { width: 16px; height: 16px; }
+
+    /* ── CONTACT STRIP ── */
+    .contact-strip {
+      background: var(--gold);
+      padding: 72px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 32px;
+    }
+    .contact-strip h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 300; color: var(--black);
+      line-height: 1.05;
+    }
+    .contact-strip h2 em { font-style: italic; font-weight: 400; }
+    .contact-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-dark {
+      background: var(--black); color: var(--gold);
+      padding: 16px 30px; font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; display: inline-block;
+      transition: background 0.3s, transform 0.2s;
+      white-space: nowrap;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .btn-dark:hover { background: #1f1f1f; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); padding: 56px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; letter-spacing: 3px;
+      color: var(--gold); text-transform: uppercase;
+    }
+    .footer-logo small {
+      display: block; font-size: 9px; letter-spacing: 4px;
+      color: var(--muted); font-weight: 400; margin-top: 4px;
+    }
+    .footer-contact {
+      display: flex; gap: 32px; flex-wrap: wrap;
+    }
+    .footer-contact div {
+      font-size: 12px; color: var(--muted);
+    }
+    .footer-contact a {
+      color: var(--white); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-contact a:hover { color: var(--gold); }
+    .footer-contact .label {
+      font-size: 9px; letter-spacing: 2.5px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 6px; display: block;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 22px; }
+      .nav-links { display: none; }
+      .nav-links.mobile-show {
+        display: flex; position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(10,10,10,0.98); flex-direction: column;
+        padding: 24px; gap: 22px; border-top: 1px solid var(--border);
+      }
+
+      .hero {
+        grid-template-columns: 1fr; gap: 40px;
+        padding: 120px 22px 60px;
+        min-height: auto;
+      }
+      .hero-title { font-size: clamp(44px, 12vw, 68px); }
+      .hero-image img { height: 460px; }
+
+      section { padding: 72px 22px; }
+      .info-tiles { grid-template-columns: 1fr; }
+      .info-tile { padding: 40px 24px; }
+      .info-tile .big { font-size: 48px; }
+
+      .driver-inner {
+        grid-template-columns: 1fr; gap: 48px;
+        padding: 72px 22px;
+      }
+      .driver-card { padding: 36px 24px; }
+      .driver-initials { width: 110px; height: 110px; font-size: 44px; }
+
+      .gallery-header, .gallery-grid { padding: 0 22px; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 280px 240px 240px;
+      }
+      .gallery-item-1 { grid-column: 1; grid-row: 1; }
+      .gallery-item-2 { grid-column: 1; grid-row: 2; }
+      .gallery-item-3 { grid-column: 1; grid-row: 3; }
+
+      .booking-wrapper {
+        grid-template-columns: 1fr; gap: 40px;
+        padding: 72px 22px;
+      }
+      .field-group { grid-template-columns: 1fr; }
+
+      .contact-strip {
+        padding: 56px 22px;
+        flex-direction: column; align-items: flex-start;
+      }
+
+      footer {
+        padding: 40px 22px;
+        flex-direction: column; align-items: flex-start;
+      }
+      .footer-contact { gap: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-image img { height: 380px; }
+      .gallery-grid { grid-template-rows: 240px 200px 200px; }
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .hero-ctas a { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">JGF Lux Driver<small>Miami · FL</small></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#driver">Driver</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Vehicle</a></li>
+      <li><a href="#booking" class="nav-cta">Book a Ride</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Private Luxury SUV · Miami</div>
+      <h1 class="hero-title">Arrive in<br><em>Style.</em></h1>
+      <p class="hero-sub">Professional, private transportation in a fully-equipped Chevrolet Suburban. Airports, corporate events, special occasions — anywhere in South Florida, on your schedule.</p>
+      <p class="hero-tagline">Llegue con estilo. Servicio bilingüe.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#booking">Book a Ride</a>
+        <a class="btn-outline" href="tel:+18138081070">Call Now</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-frame">
+        <img src="images/suburban-hero.jpeg" alt="JGF Lux Driver — 2025 Chevrolet Suburban in Miami" />
+      </div>
+    </div>
+  </header>
+
+  <!-- INFO TILES -->
+  <div class="info-tiles">
+    <div class="info-tile">
+      <div class="big">24/7</div>
+      <p>Always Available</p>
+    </div>
+    <div class="info-tile">
+      <div class="big">8+</div>
+      <p>Years of Experience</p>
+    </div>
+    <div class="info-tile">
+      <div class="big">EN · ES</div>
+      <p>Bilingual Service</p>
+    </div>
+  </div>
+
+  <!-- MEET YOUR DRIVER -->
+  <section class="driver-section" id="driver" style="padding: 0;">
+    <div class="driver-inner">
+      <div class="driver-text">
+        <div class="section-label">Meet Your Driver</div>
+        <h2 class="section-title">Trusted hands<br>at the <em>wheel.</em></h2>
+        <div class="driver-name">Jose Manuel Garcia</div>
+        <p>With more than 8 years of professional driving experience — across Uber, Lyft, and exclusive private trips — Jose has earned a reputation for punctuality, discretion, and genuine hospitality.</p>
+        <p>Whether you're heading to the airport before sunrise or coming home from a late dinner, you're in the hands of someone who treats every ride like it matters.</p>
+        <div class="driver-meta">
+          <div class="driver-meta-row">
+            <div class="driver-meta-icon">✦</div>
+            <div>
+              <div class="driver-meta-label">Experience</div>
+              <div class="driver-meta-value">8+ years · Uber, Lyft &amp; Private</div>
+            </div>
+          </div>
+          <div class="driver-meta-row">
+            <div class="driver-meta-icon">✦</div>
+            <div>
+              <div class="driver-meta-label">Languages</div>
+              <div class="driver-meta-value">English &amp; Spanish · Habla español</div>
+            </div>
+          </div>
+          <div class="driver-meta-row">
+            <div class="driver-meta-icon">✦</div>
+            <div>
+              <div class="driver-meta-label">Service Area</div>
+              <div class="driver-meta-value">Miami &amp; All of South Florida</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="driver-card">
+        <div class="driver-initials">JG</div>
+        <h3>Jose Manuel Garcia</h3>
+        <div class="driver-card-role">Owner · Driver</div>
+        <div class="driver-quote">"Every passenger is a guest. Every ride is a promise kept."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Luxury travel,<br><em>redefined.</em></h2>
+    <p class="section-intro">From airport runs at 5 a.m. to nights out on Brickell, JGF Lux Driver is built around one idea: a ride should feel effortless from the moment you book it.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">— 01</div>
+        <div class="feature-title">Airport Transfers</div>
+        <p class="feature-desc">Punctual, stress-free pickup and drop-off at Miami International (MIA), Fort Lauderdale (FLL), and surrounding South Florida airports.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">— 02</div>
+        <div class="feature-title">Corporate &amp; Executive</div>
+        <p class="feature-desc">Discreet, professional transportation for meetings, business dinners, and client pickups — tailored to your schedule.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">— 03</div>
+        <div class="feature-title">Special Occasions</div>
+        <p class="feature-desc">Weddings, proms, nights out, family events — arrive together in comfort and style, with room for everyone.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">— 04</div>
+        <div class="feature-title">Hourly &amp; City Tours</div>
+        <p class="feature-desc">Explore Miami and beyond with a knowledgeable, courteous driver at your service for hours or full days.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery" style="max-width: 100%;">
+    <div class="gallery-header">
+      <div class="section-label">The Vehicle</div>
+      <h2 class="section-title">A Suburban,<br><em>fully equipped.</em></h2>
+      <p class="section-intro">Spacious seating for up to 7 passengers, premium leather interior, and plenty of room for luggage. Every detail tuned for a comfortable ride.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-item-1">
+        <img src="images/suburban-front.jpeg" alt="JGF Lux Driver Chevrolet Suburban — Front view" />
+        <div class="gallery-caption">Exterior<small>Chevrolet Suburban · Black</small></div>
+      </div>
+      <div class="gallery-item gallery-item-2">
+        <img src="images/suburban-interior.jpeg" alt="JGF Lux Driver Suburban — Interior, premium leather seating" />
+        <div class="gallery-caption">Interior<small>Premium Leather · 7 Seats</small></div>
+      </div>
+      <div class="gallery-item gallery-item-3">
+        <img src="images/suburban-rear.jpeg" alt="JGF Lux Driver Suburban — Rear view in Hollywood Beach" />
+        <div class="gallery-caption">Spacious<small>Plenty of Luggage Room</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking-section" id="booking">
+    <div class="booking-wrapper">
+      <div class="booking-text">
+        <div class="section-label">Reserve Your Ride</div>
+        <h2 class="section-title">Book your<br>ride <em>today.</em></h2>
+        <p>Fill out the details below and tap <strong style="color: var(--white);">Send to WhatsApp</strong> — your request will open in WhatsApp pre-filled, ready to send to Jose directly. He'll confirm availability and provide a quote within minutes.</p>
+        <p>You can also reach out directly anytime:</p>
+        <p style="margin-top: 14px;">
+          <span style="color: var(--gold); font-weight: 500;">📞 +1 (813) 808-1070</span><br>
+          <span style="color: var(--gold); font-weight: 500;">✉️ jroxg2014@gmail.com</span>
+        </p>
+        <div class="booking-note">
+          <strong>About Pricing</strong>
+          <p>We provide custom quotes rather than fixed rates — Miami traffic and route distance vary throughout the day. Send your details and Jose will respond with a fair, transparent quote.</p>
+        </div>
+      </div>
+      <form class="form-fields" onsubmit="sendToWhatsApp(event)">
+        <div class="field-group">
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="John" required />
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Doe" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="phone">Phone / WhatsApp</label>
+          <input type="tel" id="phone" placeholder="+1 (305) 000-0000" required />
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label for="date">Pickup Date</label>
+            <input type="date" id="date" required />
+          </div>
+          <div class="field">
+            <label for="time">Pickup Time</label>
+            <input type="time" id="time" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="service">Service Type</label>
+          <select id="service" required>
+            <option value="">Select a service...</option>
+            <option>Airport Transfer</option>
+            <option>Corporate / Executive</option>
+            <option>Special Occasion</option>
+            <option>Hourly / City Tour</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="passengers">Number of Passengers</label>
+          <input type="number" id="passengers" placeholder="e.g. 4" min="1" max="7" required />
+        </div>
+        <div class="field">
+          <label for="details">Pickup &amp; Destination</label>
+          <textarea id="details" placeholder="e.g. 123 Brickell Ave, Miami → MIA Airport" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send to WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip" id="contact">
+    <h2>Ready to ride<br>in <em>comfort?</em></h2>
+    <div class="contact-actions">
+      <a class="btn-dark" href="tel:+18138081070">📞 Call</a>
+      <a class="btn-dark" href="https://wa.me/18138081070" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="btn-dark" href="mailto:jroxg2014@gmail.com">✉️ Email</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">JGF Lux Driver<small>Miami · FL</small></div>
+    <div class="footer-contact">
+      <div>
+        <span class="label">Phone</span>
+        <a href="tel:+18138081070">+1 (813) 808-1070</a>
+      </div>
+      <div>
+        <span class="label">Email</span>
+        <a href="mailto:jroxg2014@gmail.com">jroxg2014@gmail.com</a>
+      </div>
+      <div>
+        <span class="label">Service Area</span>
+        <div style="color: var(--white);">Miami &amp; South Florida</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav background on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // WhatsApp booking handler
+    function sendToWhatsApp(event) {
+      event.preventDefault();
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const service = document.getElementById('service').value;
+      const passengers = document.getElementById('passengers').value;
+      const details = document.getElementById('details').value.trim();
+
+      // Format date nicely
+      let formattedDate = date;
+      if (date) {
+        const d = new Date(date + 'T00:00:00');
+        formattedDate = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      }
+
+      // Format time to 12-hour
+      let formattedTime = time;
+      if (time) {
+        const [h, m] = time.split(':');
+        const hour = parseInt(h);
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+        const hour12 = hour % 12 || 12;
+        formattedTime = `${hour12}:${m} ${ampm}`;
+      }
+
+      const message =
+        `Hello! I'd like to book a ride with JGF Lux Driver.\n\n` +
+        `*Name:* ${firstName} ${lastName}\n` +
+        `*Phone:* ${phone}\n` +
+        `*Date:* ${formattedDate}\n` +
+        `*Time:* ${formattedTime}\n` +
+        `*Service:* ${service}\n` +
+        `*Passengers:* ${passengers}\n` +
+        `*Pickup & Destination:* ${details}\n\n` +
+        `Could you please confirm availability and send me a quote? Thank you!`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/18138081070?text=${encodedMessage}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+
+</body>
+</html>
